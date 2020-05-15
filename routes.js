@@ -1,16 +1,16 @@
 // HOME
 const HOME = '/';
+const SEARCH = '/search';
 const JOIN = '/join';
 const LOGIN = '/login';
 const LOGOUT = '/logout';
-const SEARCH = '/search';
 
 
 // USERS
 const USERS = '/users';
-const USER_DETAILS = '/user-details';
-const EDIT_PROFILE = '/edit-profile';
-const CHANGE_PASSWORD = '/change-password';
+const EDIT_PROFILE = '/:id/edit-profile';
+const CHANGE_PASSWORD = '/:id/change-password';
+const USER_DETAILS = '/:id';
 
 // VIDEOS
 const VIDEOS = '/videos';
