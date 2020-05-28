@@ -2,12 +2,12 @@
 this is clone of youtube
 
 - [ ] home
-- [ ] join
-- [ ] login
+- [x] join
+- [x] login
 - [x] search
 
 - [ ] user details
-- [ ] edit profile
+- [x] edit profile
 - [ ] change password
 
 - [ ] upload
