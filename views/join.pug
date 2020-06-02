@@ -3,10 +3,11 @@ extends layouts/main
 block content
     .form-container
         form(action=routes.join method="post")
-            input(type="text" name="name" placeholder="Full Name")
-            input(type="password" name="password" placeholder='Password')
-            input(type="password" name="password2" placeholder="Vertify Password")
-            input(type='submit' value="Join Now")
+            input(type="text" name="name" placeholder="Full Name" required)
+            input(type='email' name='email' placeholder='Email' required)
+            input(type="password" name="password" placeholder='Password' required)
+            input(type="password" name="password2" placeholder="Vertify Password" required)
+            input(type='submit' value='Join Now')
         include partials/socialLogin.pug
 
 

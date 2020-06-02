@@ -6,8 +6,9 @@ block content
     .videos
         each video in videoList
             +videoBlock({
-                title:video.title,
-                views:video.views,
-                videofile:video.videofile
-            })
+                    id:video.id,
+                    title:video.title,
+                    views:video.views,
+                    videofile:video.videofile
+                })
     
