@@ -1,4 +1,3 @@
-import { videoList } from "../db";
 
 export const home = (req, res) => {
     res.render("home", { pageTitle: "Home", videoList: videoList});

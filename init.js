@@ -1,5 +1,10 @@
 import app from "../weTube/app.js"
-const PORTS = 4000
+import './db'
+import dotenv from 'dotenv'
+
+dotenv.config();
+
+const PORTS = process.env.PORTS || 4000
 
 
 const appListener = () => console.log(`✅ listening to: http://localhost:${PORTS}`)
