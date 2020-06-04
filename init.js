@@ -3,6 +3,7 @@ import './db'
 import dotenv from 'dotenv'
 
 dotenv.config();
+import './models/Video'
 
 const PORTS = process.env.PORTS || 4000
 
