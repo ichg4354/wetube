@@ -1,4 +1,4 @@
-import mongoose, { mongo } from 'mongoose';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -6,7 +6,8 @@ dotenv.config();
 
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
-    useFindAndModify:false
+    useFindAndModify: false,
+    useUnifiedTopology:true
 })
 
 const db = mongoose.connection

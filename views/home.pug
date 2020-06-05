@@ -4,7 +4,7 @@ include mixins/videoBlock
 
 block content
     .videos
-        each video in videoList
+        each video in videos
             +videoBlock({
                     id:video.id,
                     title:video.title,
