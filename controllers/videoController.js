@@ -1,4 +1,5 @@
 import routes from "../routes";
+import Video from '../models/Video'
 
 export const getJoin = (req, res) => {
   res.render("join", { pageTitle: "Join" });
@@ -34,13 +35,19 @@ export const videos = (req, res) =>
 export const getUpload = (req, res) =>
   res.render("upload", { pageTitle: "Upload" });
 
-export const postUpload = (req, res) => {
+export const postUpload = async(req, res) => {
   const body = {
-    videoFile: req.videoFile,
-    title: req.title,
-    description: req.description
+    filePath: req.file.path,
+    title: req.body.title,
+    description: req.body.description
   }
-  res.redirect(routes.videoDetail(4))
+  const newVideo = await Video.create({
+    fileUrl: body.filePath,
+    title: body.title,
+    description:body.description
+  })
+  console.log(newVideo)
+  res.redirect(routes.videoDetail(newVideo.id))
 }
 
 export const video_detail = (req, res) =>

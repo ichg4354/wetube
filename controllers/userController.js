@@ -6,7 +6,6 @@ export const home = async (req, res) => {
     res.render("home", { pageTitle: "Home", videos });
   } catch (error) {
     console.log(error);
-    console.log(videos)
     res.render("home", { pageTitle: "Home", videos: [] });
   }
 };
