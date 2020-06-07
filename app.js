@@ -12,6 +12,7 @@ import { localsMiddleware } from "../weTube/middlewares"
 const app = express();
 
 app.set('view engine', 'pug');
+app.use('/uploads',express.static('uploads'))
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 app.use(cookieparser());
