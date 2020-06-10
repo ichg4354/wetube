@@ -21,11 +21,11 @@ export const search = (req, res) => {
 
 export const users = (req, res) => res.render("users", { pageTitle: "Users" });
 
-export const edit_profile = (req, res) =>
+export const editProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "Edit Profile" });
 
-export const change_password = (req, res) =>
+export const changePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change Password" });
 
-export const user_details = (req, res) =>
+export const userDetails = (req, res) =>
   res.render("userDetails", { pageTitle: "User Details" });
