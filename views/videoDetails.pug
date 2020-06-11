@@ -5,10 +5,13 @@ block content
         video(src=`/${video.fileUrl}` controls=true)
     .video_info
         a(href=routes.editVideo(video.id)) Edit Video
-        h5=video.title
-        h5=video.description
+        h1=video.title
         h5=video.views
-        h1=video.id
-
+        h3=video.description
+    .video_comments
+        if video.comments.length === 1
+            span.video__comment-number 1 Comment
+        else
+            span.video__comemnt-number #{video.comments.length} Comments
 
 
