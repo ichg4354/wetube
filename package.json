@@ -18,10 +18,15 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "notenv": "^2.0.3",
-    "pug": "^2.0.4"
+    "pug": "^2.0.4",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node init.js"
+    "dev:server": "nodemon --exec babel-node init.js",
+    "dev:assets": "WEBPACK_ENV=development webpack",
+    "build:assets": "WEBPACK_ENV=production webpack"
+
   },
   "devDependencies": {
     "nodemon": "^2.0.3",
