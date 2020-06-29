@@ -1,0 +1,58 @@
+header {
+  background-color: $red;
+  min-height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 25px;
+}
+header .fa-youtube {
+  font-size: 35px;
+  color: white;
+  padding-right: 10px;
+}
+header .fa-youtube:hover{
+    color: grey;
+}
+
+.header__search {
+  border: none;
+  text-decoration: none;
+  outline: none;
+  margin-right: 40px;
+  margin-left: 5px;
+}
+.header__search input {
+  border-radius: 15px;
+  padding: 10px 5px;
+  width: 50vw;
+  outline: none;
+  border: transparent;
+}
+[type="text"]:focus {
+  border: 2px solid rgb(152, 178, 202);
+}
+
+.logo:hover {
+  color: grey;
+}
+
+header ul {
+  padding: 0;
+  margin: 0;
+  float: right;
+}
+header li {
+  margin: 0;
+  padding: 0;
+  float: left;
+  padding: 5px 5px;
+}
+header a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+header a:hover {
+  color: grey;
+}

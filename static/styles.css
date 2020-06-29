@@ -1,2 +1,117 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
 body {
-  background-color: peru; }
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+header {
+  background-color: #ea232c;
+  min-height: 40px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+     -moz-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 5px 25px; }
+
+header .fa-youtube {
+  font-size: 35px;
+  color: white;
+  padding-right: 10px; }
+
+header .fa-youtube:hover {
+  color: grey; }
+
+.header__search {
+  border: none;
+  text-decoration: none;
+  outline: none;
+  margin-right: 40px;
+  margin-left: 5px; }
+
+.header__search input {
+  -webkit-border-radius: 15px;
+     -moz-border-radius: 15px;
+          border-radius: 15px;
+  padding: 10px 5px;
+  width: 50vw;
+  outline: none;
+  border: transparent; }
+
+[type="text"]:focus {
+  border: 2px solid #98b2ca; }
+
+.logo:hover {
+  color: grey; }
+
+header ul {
+  padding: 0;
+  margin: 0;
+  float: right; }
+
+header li {
+  margin: 0;
+  padding: 0;
+  float: left;
+  padding: 5px 5px; }
+
+header a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold; }
+
+header a:hover {
+  color: grey; }
+
+html, body {
+  background-color: #f5f5f5;
+  color: black;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 14px; }

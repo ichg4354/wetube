@@ -1,9 +1,9 @@
 header.header
     .header_column
-        a(href=routes.home)
+        a(href=routes.home class="logo")
             <i class="fab fa-youtube"></i>
     .header_column
-        form(action=routes.search method='get')
+        form(action=routes.search method='get' class="header__search")
             input(type="text" placeholder="Search by term.." name='term')
     .header_column
         ul
