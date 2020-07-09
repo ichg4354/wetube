@@ -1,4 +1,6 @@
 import Video from "../models/Video";
+import routes from "../routes"
+import User from "../models/User"
 
 export const home = async (req, res) => {
   try {
@@ -18,7 +20,7 @@ export const search = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-  console.log(videos)
+  console.log(videos);
   res.render("search", { pageTitle: "Search", videos, term });
 };
 
@@ -32,3 +34,41 @@ export const changePassword = (req, res) =>
 
 export const userDetails = (req, res) =>
   res.render("userDetails", { pageTitle: "User Details" });
+
+export const getJoin = (req, res) => {
+  res.render("join", { pageTitle: "Join" });
+};
+
+export const postJoin = async (req, res) => {
+  const body = req.body;
+  const password1 = body.password;
+  const password2 = body.password2;
+  const name = body.name;
+  const email = body.email;
+  if (password1 !== password2) {
+    res.redirect(routes.home);
+  } else {
+    try {
+      const user = await User({
+        name: name,
+        email: email,
+      });
+      await User.register(user,password1)
+    } catch (e) {
+      console.log(e);
+    }
+    res.status(400);
+    res.render("join", { pageTitle: "Join" });
+  }
+};
+
+export const getLogin = (req, res) => {
+  res.render("login", { pageTitle: "Login" });
+};
+export const postLogin = (req, res) => {
+  res.redirect(routes.home);
+};
+
+export const logout = (req, res) => {
+  res.redirect(routes.home);
+};
