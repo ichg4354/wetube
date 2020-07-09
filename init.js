@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 dotenv.config();
 import './models/Video'
 import './models/Comment'
+import "./models/User"
 
 const PORTS = process.env.PORTS || 4000
 

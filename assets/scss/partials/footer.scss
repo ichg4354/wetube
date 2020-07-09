@@ -1,0 +1,15 @@
+footer{
+    min-height: 150px;
+    border-top: 1px solid rgb(122, 122, 122) ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: grey;
+    i{
+        font-size: 80px;
+        opacity: .6;
+        margin-bottom: 15px;
+
+    }    
+}

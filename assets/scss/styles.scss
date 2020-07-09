@@ -2,7 +2,9 @@
 @import "./config/reset.scss";
 @import "./pages/main.scss";
 @import "./partials/header.scss";
-
+@import "./partials/footer.scss";
+@import "./pages/form.scss";
+@import "./partials/sociallogin.scss";
 
 html,body{
   background-color: $grey;
