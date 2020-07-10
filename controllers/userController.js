@@ -1,6 +1,8 @@
 import Video from "../models/Video";
-import routes from "../routes"
-import User from "../models/User"
+import routes from "../routes";
+import User from "../models/User";
+import passport from "passport";
+import { localsMiddleware } from "../middlewares";
 
 export const home = async (req, res) => {
   try {
@@ -39,36 +41,38 @@ export const getJoin = (req, res) => {
   res.render("join", { pageTitle: "Join" });
 };
 
-export const postJoin = async (req, res) => {
+export const postJoin = async (req, res, next) => {
   const body = req.body;
   const password1 = body.password;
   const password2 = body.password2;
   const name = body.name;
   const email = body.email;
   if (password1 !== password2) {
-    res.redirect(routes.home);
+    res.redirect(routes.join);
   } else {
     try {
       const user = await User({
         name: name,
         email: email,
       });
-      await User.register(user,password1)
+      await User.register(user, password1);
+      next();
     } catch (e) {
       console.log(e);
+      res.redirect(routes.home)
     }
-    res.status(400);
-    res.render("join", { pageTitle: "Join" });
   }
 };
 
 export const getLogin = (req, res) => {
   res.render("login", { pageTitle: "Login" });
 };
-export const postLogin = (req, res) => {
-  res.redirect(routes.home);
-};
+export const postLogin = passport.authenticate('local', {
+  successRedirect: routes.home,
+  failureRedirect:routes.login
+})
 
 export const logout = (req, res) => {
-  res.redirect(routes.home);
+  req.logout()
+  res.redirect(routes.login)
 };
