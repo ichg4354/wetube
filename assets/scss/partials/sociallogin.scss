@@ -1,5 +1,9 @@
-.socialLogin{
-    button{
-        display: block;
-    }
+.socialLogin {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  button {
+    width: 15vw;
+    margin-bottom: 5px;
+  }
 }

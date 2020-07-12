@@ -6,6 +6,8 @@ import { githubLoginCallback } from "./controllers/userController";
 
 dotenv.config();
 
+passport.use(User.createStrategy());
+
 passport.use(
   new GithubStrategy(
     {
@@ -13,11 +15,11 @@ passport.use(
       clientSecret: process.env.GH_SECRET,
       callbackURL: "http://localhost:4000/auth/github/callback",
     },
-    githubLoginCallback
+    githubLoginCallback,
   )
 );
 
-passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
