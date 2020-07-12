@@ -34,8 +34,19 @@ export const editProfile = (req, res) =>
 export const changePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change Password" });
 
-export const userDetails = (req, res) =>
-  res.render("userDetails", { pageTitle: "User Details" });
+export const getMe = (req, res) => {
+  res.render("userDetails", { pageTitle: "User Details", user:req.user });
+};
+
+export const userDetails = async(req, res) => {
+  try {
+    const id = req.params.id
+    const user = await User.findById(id)
+    res.render("userDetails", { pageTitle: "User Details",user});
+  } catch (e) {
+    res.redirect(routes.home)
+  }
+}
 
 export const getJoin = (req, res) => {
   res.render("join", { pageTitle: "Join" });
@@ -59,7 +70,7 @@ export const postJoin = async (req, res, next) => {
       next();
     } catch (e) {
       console.log(e);
-      res.redirect(routes.home)
+      res.redirect(routes.home);
     }
   }
 };
@@ -67,39 +78,46 @@ export const postJoin = async (req, res, next) => {
 export const getLogin = (req, res) => {
   res.render("login", { pageTitle: "Login" });
 };
-export const postLogin = passport.authenticate('local', {
+export const postLogin = passport.authenticate("local", {
   successRedirect: routes.home,
-  failureRedirect:routes.login
-})
+  failureRedirect: routes.login,
+});
 
 export const logout = (req, res) => {
-  req.logout()
-  res.redirect(routes.login)
+  req.logout();
+  res.redirect(routes.login);
 };
 
 export const postGithubLogin = (req, res) => {
-  res.redirect(routes.home)
-}
+  res.redirect(routes.home);
+};
 
-export const githubLoginCallback = async(accessToken, refreshToken, profile, cb) => {
-  const { _json: { name, id, avatar_url, email } } = profile
+export const githubLoginCallback = async (
+  accessToken,
+  refreshToken,
+  profile,
+  cb
+) => {
+  const {
+    _json: { name, id, avatar_url, email },
+  } = profile;
   try {
-    console.log(profile)
-    const user = await User.findOne({ email: email })
+    console.log(profile);
+    const user = await User.findOne({ email: email });
     if (user) {
-      user.githubId = id
-      user.save()
-      return cb(null,user)
+      user.githubId = id;
+      user.save();
+      return cb(null, user);
     } else {
       const newUser = await User.create({
         name: name,
         email: email,
         githubId: id,
-        avatarUrl:avatar_url
-      })
-      return cb(null,newUser)
+        avatarUrl: avatar_url,
+      });
+      return cb(null, newUser);
     }
   } catch (e) {
-    return cb(e)
+    return cb(e);
   }
-}
+};

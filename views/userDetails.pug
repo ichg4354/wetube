@@ -1,4 +1,10 @@
 extends layouts/main
 
 block content
-    p userDetails
+    .userDetail
+        .userDetail__header
+            if(user.avatarUrl)
+                img.avatar(src=user.avatarUrl, alt="#")
+            else
+                h1=usernotfound
+            h4=user.name
