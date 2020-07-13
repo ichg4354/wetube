@@ -35,18 +35,18 @@ export const changePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change Password" });
 
 export const getMe = (req, res) => {
-  res.render("userDetails", { pageTitle: "User Details", user:req.user });
+  res.render("userDetails", { pageTitle: "User Details", user: req.user });
 };
 
-export const userDetails = async(req, res) => {
+export const userDetails = async (req, res) => {
   try {
-    const id = req.params.id
-    const user = await User.findById(id)
-    res.render("userDetails", { pageTitle: "User Details",user});
+    const id = req.params.id;
+    const user = await User.findById(id);
+    res.render("userDetails", { pageTitle: "User Details", user });
   } catch (e) {
-    res.redirect(routes.home)
+    res.redirect(routes.home);
   }
-}
+};
 
 export const getJoin = (req, res) => {
   res.render("join", { pageTitle: "Join" });
@@ -120,4 +120,45 @@ export const githubLoginCallback = async (
   } catch (e) {
     return cb(e);
   }
+};
+
+export const facebookLoginCallback = (
+  accessToken,
+  refreshToken,
+  profile,
+  cb
+) => {
+  const { id, username } = profile;
+  console.log(id, username);
+};
+
+export const postFacebookLogin = (req, res) => {
+  res.redirect(routes.home);
+};
+
+export const kakaoLoginCallback = async(accessToken, refreshToken, profile, cb) => {
+  const id = profile._json.id;
+  const email = profile._json.kakao_account.email;
+  const name = profile._json.properties.nickname;
+  try {
+    const user = await User.findOne({ email: email })
+    if (user) {
+      user.kakaoId = id
+      user.save()
+      cb(null, user)
+    } else {
+      const newUser = await User.create({
+        name: name,
+        email: email,
+        kakaoId: id
+      })
+      cb(null, newUser)
+    }
+  } catch (error) {
+    cb(error)
+  }
+};
+
+export const postKakaoLogin = (req, res) => {
+  res.redirect(routes.home);
 };
