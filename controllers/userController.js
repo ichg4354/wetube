@@ -28,11 +28,38 @@ export const search = async (req, res) => {
 
 export const users = (req, res) => res.render("users", { pageTitle: "Users" });
 
-export const editProfile = (req, res) =>
+export const getEditProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "Edit Profile" });
 
-export const changePassword = (req, res) =>
+export const postEditProfile = async (req, res) => {
+  const {
+    body: { name, email },
+  } = req;
+  // const {
+  //   file: { path },
+  // } = req;
+  const id = req.user.id;
+  const file = req.file;
+  try {
+    await User.findByIdAndUpdate(id, {
+      name: name,
+      email: email,
+      avatarUrl: file ? req.file.path : req.user.avatarUrl,
+    });
+    res.redirect(routes.me);
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.me);
+  }
+};
+
+export const getChangePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change Password" });
+
+export const postChangePassword = (req, res) => {
+  
+}
+
 
 export const getMe = (req, res) => {
   res.render("userDetails", { pageTitle: "User Details", user: req.user });
@@ -136,26 +163,31 @@ export const postFacebookLogin = (req, res) => {
   res.redirect(routes.home);
 };
 
-export const kakaoLoginCallback = async(accessToken, refreshToken, profile, cb) => {
+export const kakaoLoginCallback = async (
+  accessToken,
+  refreshToken,
+  profile,
+  cb
+) => {
   const id = profile._json.id;
   const email = profile._json.kakao_account.email;
   const name = profile._json.properties.nickname;
   try {
-    const user = await User.findOne({ email: email })
+    const user = await User.findOne({ email: email });
     if (user) {
-      user.kakaoId = id
-      user.save()
-      cb(null, user)
+      user.kakaoId = id;
+      user.save();
+      cb(null, user);
     } else {
       const newUser = await User.create({
         name: name,
         email: email,
-        kakaoId: id
-      })
-      cb(null, newUser)
+        kakaoId: id,
+      });
+      cb(null, newUser);
     }
   } catch (error) {
-    cb(error)
+    cb(error);
   }
 };
 

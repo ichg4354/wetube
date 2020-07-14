@@ -22,9 +22,7 @@ globalRouter.get(routes.gitHubCallback, passport.authenticate('github', { failur
 globalRouter.get(routes.facebookLogin, passport.authenticate('facebook'))
 globalRouter.get(routes.faebookCallback, passport.authenticate('facebook', { failureRedirect: "/login" }), postFacebookLogin)
 
-
 globalRouter.get(routes.kakaoLogin, passport.authenticate('kakao'))
-
 globalRouter.get(routes.kakaoCallback, passport.authenticate('kakao', { failureRedirect: "/home" },),postKakaoLogin)
 
 

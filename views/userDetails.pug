@@ -3,8 +3,14 @@ extends layouts/main
 block content
     .userDetail
         .userDetail__header
-            if(user.avatarUrl)
                 img.avatar(src=user.avatarUrl, alt="#")
-            else
-                h1=usernotfound
-            h4=user.name
+                h4=user.name
+    if (loggedUser.id === user.id)
+        .editUserDetail
+            a(href=routes.editProfile(user.id))
+                button.editUserDetail__btn  Edit Profile
+        .changePasswod
+            a(href=routes.changePassword(user.id))
+                button.changePassword__btn Change Password
+    
+

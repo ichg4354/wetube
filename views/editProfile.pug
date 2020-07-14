@@ -2,10 +2,10 @@ extends layouts/main
 
 block content
     .form-container
-        form(action=routes.editProfile, method="post")
+        form(action=routes.editProfile(loggedUser.id), method="post",enctype='multipart/form-data')
             label(for="avatar") Avatar
-            input(type="file" id='avatar' name='avatar')
-            input(type="text" name="name" placeholder="Name")
-            input(type="email" name="email" placeholder="Email")
-            input(type='submit', value='edit-profile')
-            a.form-container__link(href=routes.users + routes.changePassword) ChangePassword
+            input(type="file" id='avatar' name='avatar' accept='image/*')
+            input(type="text" name="name" placeholder="Name",value=loggedUser.name)
+            input(type="email" name="email" placeholder="Email",value=loggedUser.email)
+            input(type='submit', value='Edit Profile')
+            //- a.form-container__link(href=routes.users + routes.changePassword) ChangePassword

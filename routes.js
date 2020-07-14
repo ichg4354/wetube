@@ -24,13 +24,13 @@ const GITHUB_LOGIN = "/auth/github";
 const GITHUB_CALLBACK = "/auth/github/callback";
 
 // FACEBOOK
-const FACEBOOK_LOGIN = '/auth/facebook'
-const FACEBOOK_CALLBACK = '/auth/facebook/callback'
+const FACEBOOK_LOGIN = "/auth/facebook";
+const FACEBOOK_CALLBACK = "/auth/facebook/callback";
 
-// KAKAO 
+// KAKAO
 
-const KAKAO_LOGIN = "/auth/kakao"
-const KAKAO_CALLBACK = '/auth/kakao/callback'
+const KAKAO_LOGIN = "/auth/kakao";
+const KAKAO_CALLBACK = "/auth/kakao/callback";
 
 const routes = {
   home: HOME,
@@ -46,8 +46,20 @@ const routes = {
       return USER_DETAILS;
     }
   },
-  editProfile: EDIT_PROFILE,
-  changePassword: CHANGE_PASSWORD,
+  editProfile: (id) => {
+    if (id) {
+      return `/users/${id}/edit-profile`;
+    } else {
+      return EDIT_PROFILE;
+    }
+  },
+  changePassword: (id) => {
+    if (id) {
+      return `users/${id}/change-password`
+    } else {
+      return CHANGE_PASSWORD
+    }
+  },
   videos: VIDEOS,
   upload: UPLOAD,
   videoDetail: (id) => {
@@ -77,7 +89,7 @@ const routes = {
   facebookLogin: FACEBOOK_LOGIN,
   faebookCallback: FACEBOOK_CALLBACK,
   kakaoLogin: KAKAO_LOGIN,
-  kakaoCallback:KAKAO_CALLBACK,
+  kakaoCallback: KAKAO_CALLBACK,
 };
 
 export default routes;
