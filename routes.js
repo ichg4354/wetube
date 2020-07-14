@@ -55,9 +55,9 @@ const routes = {
   },
   changePassword: (id) => {
     if (id) {
-      return `users/${id}/change-password`
+      return `/users/${id}/change-password`;
     } else {
-      return CHANGE_PASSWORD
+      return CHANGE_PASSWORD;
     }
   },
   videos: VIDEOS,
