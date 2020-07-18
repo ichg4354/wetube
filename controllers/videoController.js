@@ -3,8 +3,6 @@ import Video from "../models/Video";
 
 import { mongoose } from "mongoose";
 
-
-
 export const videos = (req, res) =>
   res.render("videos", { pageTitle: "Videos" });
 
@@ -21,7 +19,10 @@ export const postUpload = async (req, res) => {
     fileUrl: body.filePath,
     title: body.title,
     description: body.description,
+    creator: req.user.id,
   });
+  await req.user.videos.push(newVideo.id);
+  req.user.save();
   console.log(newVideo);
   res.redirect(routes.videoDetail(newVideo.id));
 };
@@ -29,7 +30,7 @@ export const postUpload = async (req, res) => {
 export const videoDetail = async (req, res) => {
   const id = req.params.id;
   try {
-    const video = await Video.findById(id);
+    const video = await Video.findById(id).populate("creator");
     console.log(video);
     res.render("videoDetails", { pageTitle: video.title, video });
   } catch (error) {
@@ -41,31 +42,58 @@ export const getEditVideo = async (req, res) => {
   try {
     const id = req.params.id;
     const video = await Video.findById(id);
-    res.render("editVideo", { pageTitle: `Edit ${video.title}`, video });
+    console.log(video.creator);
+    console.log(req.user.id);
+    if (video.creator == req.user.id) {
+      res.render("editVideo", { pageTitle: `Edit ${video.title}`, video });
+    } else {
+      throw Error();
+    }
   } catch (error) {
-    res.redirect(routes.home)
+    res.redirect(routes.home);
   }
 };
 
-export const postEditVideo = async(req, res) => {
+export const postEditVideo = async (req, res) => {
   try {
     const id = req.params.id;
-    const title = req.body.title
-    const description = req.body.description
-    await Video.findOneAndUpdate({ _id:id }, { title, description })
-    res.redirect(routes.videoDetail(id))
+    const title = req.body.title;
+    const description = req.body.description;
+    await Video.findOneAndUpdate({ _id: id }, { title, description });
+    res.redirect(routes.videoDetail(id));
   } catch (error) {
-    res.redirect(routes.home)
+    res.redirect(routes.home);
   }
   res.render("editVideo", { pageTitle: "Edit Video" });
 };
 
-export const delVideo = async(req, res) => {
+export const delVideo = async (req, res) => {
   const id = req.params.id;
+  const video = await Video.findById(id);
   try {
-    await Video.findByIdAndDelete({_id:id})
-    res.redirect(routes.home)
+    if (video.creator == req.user.id) {
+      await Video.findByIdAndDelete({ _id: id });
+      res.redirect(routes.home);
+    } else {
+      res.Error();
+    }
   } catch (id) {
-    res.redirect(routes.home)
+    res.redirect(routes.home);
   }
-}
+};
+
+export const postRegisterView = async (req, res) => {
+  const {
+    params: { id },
+  } = req;
+  try {
+    const video = await Video.findById(id);
+  video.views += 1;
+    video.save()
+    status(200)
+  } catch (e) {
+    status(400)
+  } finally {
+    res.end()
+  }
+};

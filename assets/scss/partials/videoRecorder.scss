@@ -1,0 +1,14 @@
+#videoAndForm{
+    display: flex;
+    flex-direction: column;
+    .video-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+        video{
+            background-color: black;
+        }
+    }
+}

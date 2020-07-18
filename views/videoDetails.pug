@@ -1,17 +1,30 @@
 extends layouts/main
+include mixins/videoPlayer
+
 
 block content
-    .video_player
-        video(src=`/${video.fileUrl}` controls=true)
-    .video_info
-        a(href=routes.editVideo(video.id)) Edit Video
-        h1=video.title
-        h5=video.views
-        h3=video.description
-    .video_comments
-        if video.comments.length === 1
-            span.video__comment-number 1 Comment
-        else
-            span.video__comemnt-number #{video.comments.length} Comments
+    .video__detail-container
+        .video__player
+            +videoPlayer({
+                fileUrl:`/${video.fileUrl}`
+            })
+        .video__info
+            .video__header
+                h1=video.title
+                h5=`${video.views} views`
+        .video__description
+            h3=video.description
+        .video__author
+            |Uploaded by: 
+            a(href=routes.userDetail(video.creator.id))
+                span.video__author-name=video.creator.name
+        .video__comments
+            if video.comments.length === 1
+                span.video__comment-number 1 Comment
+            else
+                span.video__comemnt-number #{video.comments.length} Comments
+        if(loggedUser && video.creator.id === loggedUser.id)
+                .video__edit
+                    a(href=routes.editVideo(video.id) class="blue_btn") Edit Video
 
 

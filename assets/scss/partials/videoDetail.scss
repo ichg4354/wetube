@@ -1,0 +1,32 @@
+.video__detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 800px;
+  .video__author {
+  }
+  .video__info {
+    justify-self: space-between;
+    width: 100%;
+    .video__header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 32px;
+    }
+  }
+  .video__edit {
+    align-self: flex-start;
+  }
+  .video__player {
+    margin: 20px;
+    margin-bottom: 0;
+    video {
+      width: 800px;
+      height: auto;
+    }
+  }
+}

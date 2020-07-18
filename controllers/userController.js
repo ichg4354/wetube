@@ -35,9 +35,6 @@ export const postEditProfile = async (req, res) => {
   const {
     body: { name, email },
   } = req;
-  // const {
-  //   file: { path },
-  // } = req;
   const id = req.user.id;
   const file = req.file;
   try {
@@ -72,7 +69,7 @@ export const postChangePassword = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status("400");
-    res.redirect(routes.home);
+    res.redirect(routes.changePassword(req.user.id));
   }
   console.log(oldPassword, newPassword, vertifyPassword);
 };
@@ -84,8 +81,13 @@ export const getMe = (req, res) => {
 export const userDetails = async (req, res) => {
   try {
     const id = req.params.id;
-    const user = await User.findById(id);
-    res.render("userDetails", { pageTitle: "User Details", user });
+    const user = await User.findById(id).populate('videos');
+    console.log(user)
+    res.render("userDetails", {
+      pageTitle: "User Details",
+      id: id,
+      user: user,
+    });
   } catch (e) {
     res.redirect(routes.home);
   }
