@@ -94,7 +94,18 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/styles.scss */ \"./assets/scss/styles.scss\");\n/* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _videoRecorder__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./videoRecorder */ \"./assets/js/videoRecorder.js\");\n/* harmony import */ var _videoRecorder__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_videoRecorder__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\n//# sourceURL=webpack:///./assets/js/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/styles.scss */ \"./assets/scss/styles.scss\");\n/* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _videoRecorder__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./videoRecorder */ \"./assets/js/videoRecorder.js\");\n/* harmony import */ var _videoRecorder__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_videoRecorder__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _videoPlayer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./videoPlayer */ \"./assets/js/videoPlayer.js\");\n/* harmony import */ var _videoPlayer__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_videoPlayer__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\n//# sourceURL=webpack:///./assets/js/main.js?");
+
+/***/ }),
+
+/***/ "./assets/js/videoPlayer.js":
+/*!**********************************!*\
+  !*** ./assets/js/videoPlayer.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("var videoPlayer = document.getElementById(\"jsVideoPlayer\");\nvar playBtn = document.getElementById('playBtn');\nvar videoPreview = document.getElementById(\"jsVideoPlayerPreview\");\n\nvar handlePlayClick = function handlePlayClick() {\n  if (videoPreview.paused) {\n    videoPreview.play();\n    playBtn.className.replace('fa-pause');\n  } else {\n    videoPreview.pause();\n    playBtn.className.replace('fa-play');\n  }\n};\n\nfunction init() {\n  playBtn.addEventListener('click', handlePlayClick);\n}\n\nif (videoPlayer) {\n  init();\n}\n\n//# sourceURL=webpack:///./assets/js/videoPlayer.js?");
 
 /***/ }),
 

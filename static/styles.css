@@ -414,6 +414,7 @@ main {
     transition: ease-in-out 0.4s;
     font-size: 20px;
     bottom: 42px;
+    cursor: pointer;
     display: grid;
     grid-template-columns: repeat(3, 1fr); }
     .videoPlayer .videoPlayer__controls span {
