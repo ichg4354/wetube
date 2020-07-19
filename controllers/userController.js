@@ -22,7 +22,6 @@ export const search = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-  console.log(videos);
   res.render("search", { pageTitle: "Search", videos, term });
 };
 
@@ -71,7 +70,7 @@ export const postChangePassword = async (req, res) => {
     res.status("400");
     res.redirect(routes.changePassword(req.user.id));
   }
-  console.log(oldPassword, newPassword, vertifyPassword);
+  // console.log(oldPassword, newPassword, vertifyPassword);
 };
 
 export const getMe = (req, res) => {
