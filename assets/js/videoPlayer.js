@@ -1,6 +1,5 @@
 import { postRegisterView } from "../../controllers/videoController";
 
-/* eslint-disable no-undef */
 const videoPlayer = document.getElementById("jsVideoPlayer");
 const playBtn = document.getElementById("playBtn");
 const videoPreview = document.getElementById("jsVideoPlayerPreview");
@@ -64,14 +63,14 @@ const getTotalRuntime = () => {
 const handleEnded = () => {
   videoPreview.pause();
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
-  postRegisterView();
+  registerView();
 };
 
 function secondsToVideoTime(inputSec) {
   inputSec = Math.floor(inputSec);
-  hours = Math.floor(inputSec / 3600);
-  minutes = Math.floor((inputSec - hours * 3600) / 60);
-  seconds = Math.floor(inputSec - hours * 3600 - minutes * 60);
+  let hours = Math.floor(inputSec / 3600);
+  let minutes = Math.floor((inputSec - hours * 3600) / 60);
+  let seconds = Math.floor(inputSec - hours * 3600 - minutes * 60);
 
   if (seconds < 10) {
     seconds = `0${seconds}`;
@@ -96,6 +95,16 @@ const handleDrag = (event) => {
   } else {
     volumeBtn.innerHTML = '<i class="fas fa-volume-off"></i>';
   }
+};
+
+const registerView = async () => {
+  const videoId = window.location.href.split("/videos/")[1];
+  try {
+    fetch(`http://localhost:4000/api/${videoId}/view`);
+  } catch (e) {
+    console.log(e);
+  }
+  console.log("worked!!");
 };
 
 function init() {
