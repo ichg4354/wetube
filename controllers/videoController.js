@@ -30,7 +30,9 @@ export const postUpload = async (req, res) => {
 export const videoDetail = async (req, res) => {
   const id = req.params.id;
   try {
-    const video = await Video.findById(id).populate("creator");
+    const video = await (await Video.findById(id).populate("creator")).populate(
+      "comments"
+    );
     console.log(video);
     res.render("videoDetails", { pageTitle: video.title, video });
   } catch (error) {
@@ -86,12 +88,12 @@ export const postRegisterView = async (req, res) => {
   } = req;
   try {
     const video = await Video.findById(id);
-  video.views += 1;
-    video.save()
-    status(200)
+    video.views += 1;
+    video.save();
+    status(200);
   } catch (e) {
-    status(400)
+    status(400);
   } finally {
-    res.end()
+    res.end();
   }
 };

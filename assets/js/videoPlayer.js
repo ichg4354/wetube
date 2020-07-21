@@ -1,4 +1,5 @@
 import { postRegisterView } from "../../controllers/videoController";
+import axios from "axios";
 
 const videoPlayer = document.getElementById("jsVideoPlayer");
 const playBtn = document.getElementById("playBtn");
@@ -8,6 +9,8 @@ const screenBtn = document.getElementById("screenBtn");
 const remainingVideoTime = document.getElementById("remainingVideoTime");
 const currentVideoTime = document.getElementById("currentVideoTime");
 const volumeInput = document.getElementById("volumeInput");
+const commentForm = document.getElementById("jsAddCommentForm");
+const commentInput = document.getElementById("jsCommentInput");
 
 const handlePlayBtnClick = () => {
   if (videoPreview.paused) {
@@ -71,7 +74,6 @@ function secondsToVideoTime(inputSec) {
   let hours = Math.floor(inputSec / 3600);
   let minutes = Math.floor((inputSec - hours * 3600) / 60);
   let seconds = Math.floor(inputSec - hours * 3600 - minutes * 60);
-
   if (seconds < 10) {
     seconds = `0${seconds}`;
   }
@@ -100,11 +102,23 @@ const handleDrag = (event) => {
 const registerView = async () => {
   const videoId = window.location.href.split("/videos/")[1];
   try {
-    fetch(`http://localhost:4000/api/${videoId}/view`);
+    const something = await fetch(`/api/${videoId}/view`);
+    console.log(something);
   } catch (e) {
     console.log(e);
   }
-  console.log("worked!!");
+};
+
+const sendComment = async (comment) => {
+  const videoId = window.location.href.split("/videos/")[1];
+  const axiosPost = await axios(`/api/${videoId}/comment`);
+  console.log(axiosPost);
+};
+const handleCommentSubmit = (event) => {
+  event.preventDefault();
+  const comment = commentInput.value;
+  sendComment(comment);
+  commentInput.value = "";
 };
 
 function init() {
@@ -115,6 +129,7 @@ function init() {
   videoPreview.addEventListener("canplay", changeVideoTime);
   videoPreview.addEventListener("ended", handleEnded);
   volumeInput.addEventListener("input", handleDrag);
+  commentForm.addEventListener("submit", handleCommentSubmit);
 }
 
 if (videoPlayer) {

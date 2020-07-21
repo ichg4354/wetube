@@ -13,7 +13,7 @@ import MongoStore from "connect-mongo";
 import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
-import apiRouter from "./routers/apiRouter";
+import apiRouter from "./routers/apiRouter"
 import routes from "./routes";
 import { localsMiddleware } from "../weTube/middlewares";
 

@@ -2,6 +2,7 @@ import Video from "../models/Video";
 import routes from "../routes";
 import User from "../models/User";
 import passport from "passport";
+import Comment from "../models/Comment";
 import { localsMiddleware } from "../middlewares";
 
 export const home = async (req, res) => {
@@ -80,8 +81,8 @@ export const getMe = (req, res) => {
 export const userDetails = async (req, res) => {
   try {
     const id = req.params.id;
-    const user = await User.findById(id).populate('videos');
-    console.log(user)
+    const user = await User.findById(id).populate("videos");
+    console.log(user);
     res.render("userDetails", {
       pageTitle: "User Details",
       id: id,
@@ -210,4 +211,26 @@ export const kakaoLoginCallback = async (
 
 export const postKakaoLogin = (req, res) => {
   res.redirect(routes.home);
+};
+
+export const postCommentAdd = async (req, res) => {
+  const comment = req.body.comment;
+  const videoId = req.params.id;
+  const userId = req.user.id;
+  try {
+    const user = await User.findById(userId);
+    const video = await Video.findById(videoId);
+    const newComment = await Comment.create({
+      text: comment,
+      creator: userId,
+    });
+    video.comments.push(newComment.id);
+    user.comments.push(newComment.id);
+    video.save();
+    user.save();
+  } catch (e) {
+    console.log(e);
+  } finally {
+    res.end();
+  }
 };

@@ -23,6 +23,11 @@ block content
                 span.video__comment-number 1 Comment
             else
                 span.video__comemnt-number #{video.comments.length} Comments
+            form.comments__add#jsAddCommentForm
+                input(type="text" placeholder="Write a Comment" name="comment" id="jsCommentInput")
+            ul.video__comments-list
+                each comment in video.comments
+                    li=comment.text
         if(loggedUser && video.creator.id === loggedUser.id)
                 .video__edit
                     a(href=routes.editVideo(video.id) class="blue_btn") Edit Video
