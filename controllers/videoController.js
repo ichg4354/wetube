@@ -30,9 +30,9 @@ export const postUpload = async (req, res) => {
 export const videoDetail = async (req, res) => {
   const id = req.params.id;
   try {
-    const video = await (await Video.findById(id).populate("creator")).populate(
-      "comments"
-    );
+    const video = await Video.findById(id)
+      .populate("creator")
+      .populate("comments");
     console.log(video);
     res.render("videoDetails", { pageTitle: video.title, video });
   } catch (error) {

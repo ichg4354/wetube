@@ -102,7 +102,9 @@ const handleDrag = (event) => {
 const registerView = async () => {
   const videoId = window.location.href.split("/videos/")[1];
   try {
-    const something = await fetch(`/api/${videoId}/view`);
+    const something = await fetch(`/api/${videoId}/view`, {
+      method: "POST",
+    });
     console.log(something);
   } catch (e) {
     console.log(e);
@@ -111,7 +113,13 @@ const registerView = async () => {
 
 const sendComment = async (comment) => {
   const videoId = window.location.href.split("/videos/")[1];
-  const axiosPost = await axios(`/api/${videoId}/comment`);
+  const axiosPost = await axios({
+    url: `/api/${videoId}/comment`,
+    method: "POST",
+    data: {
+      comment: comment,
+    },
+  });
   console.log(axiosPost);
 };
 const handleCommentSubmit = (event) => {
