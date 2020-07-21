@@ -2,26 +2,27 @@ extends layouts/main
 include mixins/videoBlock
 
 block content
-    .userDetail
-        .userDetail__header
-                img.avatar(src=`/${user.avatarUrl}`, alt="#")
-                h4=user.name
-    if(loggedUser)
-        if (loggedUser.id === user.id)
-            .loggedUserMenuContainer
-                .editUserDetail
-                    a(href=routes.editProfile(user.id))
-                        button.editUserDetail__btn  Edit Profile
-                .changePasswod
-                    a(href=routes.changePassword(user.id))
-                        button.changePassword__btn Change Password
-    .userDetail__videos
-            each video in user.videos
-                +videoBlock({
-                        id:video.id,
-                        title:video.title,
-                        views:video.views,
-                        fileUrl:video.fileUrl
-                    })
-            h1=user.videos.title
+    .userDetailContainer
+        .userDetail
+            .userDetail__header
+                    img.avatar(src=`/${user.avatarUrl}`, alt="#")
+                    h4=user.name
+            if(loggedUser)
+                if (loggedUser.id === user.id)
+                    .loggedUserMenuContainer
+                        .editUserDetail
+                            a(href=routes.editProfile(user.id))
+                                button.editUserDetail__btn#editProfileBtn  Edit Profile
+                        .changePasswod
+                            a(href=routes.changePassword(user.id))
+                                button.changePassword__btn#changePasswordBtn Change Password
+            .userDetail__videos
+                each video in user.videos
+                    +videoBlock({
+                            id:video.id,
+                            title:video.title,
+                            views:video.views,
+                            fileUrl:video.fileUrl
+                        })
+
 

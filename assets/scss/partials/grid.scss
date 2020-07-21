@@ -1,7 +1,7 @@
-main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .videos {
   display: grid;
@@ -31,21 +31,19 @@ main{
     grid-column: 7/9;
   }
   .videoBlock {
-      a{
-          text-decoration: none;
-          color: grey;
-
-      }
-      .videoBlock__title{
-        font-weight: bold;
-
-      }.videoBlock__views{
-
-      }
+    a {
+      text-decoration: none;
+      color: grey;
+    }
+    .videoBlock__title {
+      font-weight: bold;
+    }
+    .videoBlock__views {
+    }
     video {
-        &:hover{
-            opacity: 25%;
-        }
+      &:hover {
+        opacity: 25%;
+      }
       width: 100%;
       height: 100%;
     }

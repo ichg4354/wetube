@@ -1,18 +1,19 @@
-.userDetail {
-  display: flex;
-  flex-direction: column;
+.userDetailContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto);
+  align-content: center;
   justify-content: center;
-  align-items: center;
-  .userDetail__header {
-    display: flex;
-    align-items: center;
-    align-items: center;
-    flex-direction: column;
-    height: 70vh;
-    img {
-      margin-top: 100px;
-      width: 100px;
-      border-radius: 50%;
+  text-align: center;
+  img {
+    width: 100px;
+    border-radius: 50%;
+    margin-top: 50px;
+  }
+  .videoBlock {
+    width: 400px;
+    video {
+      width: 400px;
     }
   }
 }
@@ -20,4 +21,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }

@@ -11,3 +11,33 @@
     background-color: #89d5d1;
   }
 }
+#editProfileBtn{
+  border: 0;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  background-color: #33acff;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  top: 25px;
+  &:hover {
+    background-color: #89d5d1;
+  }
+}
+#changePasswordBtn{
+  border: 0;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  background-color: #33acff;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  top: 25px;
+  margin-top: 5px;
+  margin-bottom: 50px;
+  &:hover {
+    background-color: #89d5d1;
+  }
+}
