@@ -8,12 +8,13 @@ block content
                 h4=user.name
     if(loggedUser)
         if (loggedUser.id === user.id)
-            .editUserDetail
-                a(href=routes.editProfile(user.id))
-                    button.editUserDetail__btn  Edit Profile
-            .changePasswod
-                a(href=routes.changePassword(user.id))
-                    button.changePassword__btn Change Password
+            .loggedUserMenuContainer
+                .editUserDetail
+                    a(href=routes.editProfile(user.id))
+                        button.editUserDetail__btn  Edit Profile
+                .changePasswod
+                    a(href=routes.changePassword(user.id))
+                        button.changePassword__btn Change Password
     .userDetail__videos
             each video in user.videos
                 +videoBlock({
@@ -22,4 +23,5 @@ block content
                         views:video.views,
                         fileUrl:video.fileUrl
                     })
+            h1=user.videos.title
 

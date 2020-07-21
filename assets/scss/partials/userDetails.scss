@@ -1,0 +1,23 @@
+.userDetail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .userDetail__header {
+    display: flex;
+    align-items: center;
+    align-items: center;
+    flex-direction: column;
+    height: 70vh;
+    img {
+      margin-top: 100px;
+      width: 100px;
+      border-radius: 50%;
+    }
+  }
+}
+.loggedUserMenuContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

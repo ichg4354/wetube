@@ -26,6 +26,4 @@ globalRouter.get(routes.kakaoLogin, passport.authenticate('kakao'))
 globalRouter.get(routes.kakaoCallback, passport.authenticate('kakao', { failureRedirect: "/home" },),postKakaoLogin)
 
 
-globalRouter.get(routes.me, getMe)
-
 export default globalRouter;
