@@ -16,10 +16,14 @@
 @import "../scss/partials/videoPlayer.scss";
 @import "../scss/partials/userDetails.scss";
 @import "../scss/partials/videoBlock.scss";
+@import "../scss/partials/searchVideo.scss";
 
 html,body{
   background-color: $grey;
   color: $black;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+main{
+  min-height: 70vh;
 }
 
