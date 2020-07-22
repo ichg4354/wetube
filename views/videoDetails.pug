@@ -24,9 +24,11 @@ block content
                     a(href=routes.editVideo(video.id) class="blue_btn") Edit Video
         .video__comments
             if video.comments.length === 1
-                span.video__comment-number 1 Comment
+                span.video__comment-number#jsAddCommentNumber 1 
+                span Comment
             else
-                span.video__comemnt-number #{video.comments.length} Comments
+                span.video__comemnt-number#jsCommentNumber #{video.comments.length}
+                span Comments
             form.comments__add#jsAddCommentForm
                 input(type="text" placeholder="Write a Comment" name="comment" id="jsCommentInput") 
             ul.video__comments-list#jsCommentList

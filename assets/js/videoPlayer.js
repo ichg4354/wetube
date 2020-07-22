@@ -121,8 +121,10 @@ const addFakeComment = (comment) => {
 };
 
 const addFakeCommentNumber = () => {
-  
-}
+  const commentNumber = document.getElementById("jsCommentNumber");
+  const prevCommentNumber = parseInt(commentNumber.innerHTML);
+  commentNumber.innerHTML = prevCommentNumber + 1
+};
 const sendComment = async (comment) => {
   const videoId = window.location.href.split("/videos/")[1];
   const axiosPost = await axios({
@@ -139,6 +141,7 @@ const handleCommentSubmit = (event) => {
   const comment = commentInput.value;
   sendComment(comment);
   addFakeComment(comment);
+  addFakeCommentNumber();
   commentInput.value = "";
 };
 
