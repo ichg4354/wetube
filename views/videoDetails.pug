@@ -29,7 +29,7 @@ block content
                 span.video__comemnt-number #{video.comments.length} Comments
             form.comments__add#jsAddCommentForm
                 input(type="text" placeholder="Write a Comment" name="comment" id="jsCommentInput") 
-            ul.video__comments-list
+            ul.video__comments-list#jsCommentList
                 each comment in video.comments.reverse()
                     li
                         span

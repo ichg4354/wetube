@@ -111,6 +111,18 @@ const registerView = async () => {
   }
 };
 
+const addFakeComment = (comment) => {
+  const li = document.createElement("li");
+  const span = document.createElement("span");
+  const ul = document.getElementById("jsCommentList");
+  span.innerHTML = comment;
+  li.appendChild(span);
+  ul.prepend(li);
+};
+
+const addFakeCommentNumber = () => {
+  
+}
 const sendComment = async (comment) => {
   const videoId = window.location.href.split("/videos/")[1];
   const axiosPost = await axios({
@@ -126,6 +138,7 @@ const handleCommentSubmit = (event) => {
   event.preventDefault();
   const comment = commentInput.value;
   sendComment(comment);
+  addFakeComment(comment);
   commentInput.value = "";
 };
 
