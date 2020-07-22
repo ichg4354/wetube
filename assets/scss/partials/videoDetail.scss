@@ -4,6 +4,54 @@
   align-items: center;
   flex-direction: column;
   width: 800px;
+  .videoMainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    width: 100%;
+  }
+  .video__comments {
+    display: flex;
+    text-align: center;
+    margin-top: 50px;
+    flex-direction: column;
+    li {
+      width: 40vw;
+      filter: drop-shadow(-1px -1px 2px rgba(#115785, 0.1))
+        drop-shadow(1px 2px 2px rgba(#32acfe, 0.15));
+      margin: 1rem;
+      padding: 1.5rem 2rem;
+      position: relative;
+      font-family: "Source Sans Pro", sans-serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      background-color: #32acfe;
+      color: white;
+      border-radius: 30px 30px 30px 0;
+    }
+    form {
+      margin-top: 10px;
+      input {
+        background-color: whitesmoke;
+        border: none;
+        padding: 10px 15px;
+        width: 30vw;
+        border-radius: 8px;
+        border: 1px solid grey;
+      }
+    }
+  }
+  .video__description {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .video__author {
+    a {
+      text-decoration: none;
+      color: cadetblue;
+    }
+  }
   .video__info {
     justify-self: space-between;
     width: 100%;
