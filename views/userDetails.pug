@@ -4,7 +4,7 @@ include mixins/videoBlock
 block content
         .userDetail
             .userDetail__header
-                    img.avatar(src=`/${user.avatarUrl}`, alt="#")
+                    img.avatar(src=user.avatarUrl, alt="#")
                     h4=user.name
             if(loggedUser)
                 if (loggedUser.id === user.id)

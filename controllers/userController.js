@@ -41,12 +41,12 @@ export const postEditProfile = async (req, res) => {
     await User.findByIdAndUpdate(id, {
       name: name,
       email: email,
-      avatarUrl: file ? req.file.path : req.user.avatarUrl,
+      avatarUrl: req.file ? req.file.location : req.user.avatarUrl,
     });
-    res.redirect(routes.me);
+    res.redirect(routes.userDetail(id));
   } catch (error) {
     console.log(error);
-    res.redirect(routes.me);
+    res.redirect(routes.userDetail(id));
   }
 };
 
@@ -61,7 +61,7 @@ export const postChangePassword = async (req, res) => {
   try {
     if (newPassword === vertifyPassword) {
       await req.user.changePassword(oldPassword, newPassword);
-      res.redirect(routes.me);
+      res.redirect(routes.userDetail(req.user.id));
     } else {
       res.status("400");
       res.redirect(routes.changePassword(req.user.id));
@@ -72,10 +72,6 @@ export const postChangePassword = async (req, res) => {
     res.redirect(routes.changePassword(req.user.id));
   }
   // console.log(oldPassword, newPassword, vertifyPassword);
-};
-
-export const getMe = (req, res) => {
-  res.render("userDetails", { pageTitle: "User Details", user: req.user });
 };
 
 export const userDetails = async (req, res) => {
