@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 dotenv.config();
-
+//process.env.MONGO_URL
 mongoose.connect(process.env.MONGO_ATLAS_URL, {
   useNewUrlParser: true,
   useFindAndModify: false,

@@ -13,7 +13,7 @@ import MongoStore from "connect-mongo";
 import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
-import apiRouter from "./routers/apiRouter"
+import apiRouter from "./routers/apiRouter";
 import routes from "./routes";
 import { localsMiddleware } from "../weTube/middlewares";
 
@@ -22,8 +22,8 @@ const app = express();
 const cookieStore = MongoStore(session);
 
 app.set("view engine", "pug");
-app.use("/uploads", express.static("uploads"));
-app.use("/static", express.static("static"));
+// app.use("/uploads", express.static("uploads"));
+// app.use("/static", express.static("static"));
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 app.use(cookieparser());
@@ -44,6 +44,6 @@ app.use(localsMiddleware);
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.videos, videoRouter);
-app.use(routes.api,apiRouter)
+app.use(routes.api, apiRouter);
 
 export default app;
